@@ -6,6 +6,11 @@ abstract class Forum_Website_Controller extends Website_Controller {
 	{
 		parent::__construct();
 
+		if ( ! isset($_SESSION['forum_user']))
+			$_SESSION['forum_user'] = (isset($_SESSION['auth_user']) AND is_object($_SESSION['auth_user']))
+		                            ? new Forum_User_Model($_SESSION['auth_user']->id)
+		                            : new Forum_User_Model;
+
 		$view_name = 'forum/'.Router::$controller.'/'.Router::$method;
 
 		if(Kohana::find_file('views', $view_name))

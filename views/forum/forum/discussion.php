@@ -1,4 +1,3 @@
-<h2><?=$discussion->title?></h2>
 <ul>
 	<?php foreach ($comments as $comment):?>
 	<li>
@@ -8,3 +7,11 @@
 	</li>
 	<?php endforeach;?>
 </ul>
+<h4>Add Comment</h4>
+<?=form::open('forum/create_comment/'.$discussion->id)?>
+<ul>
+	<li><label for="title">Discussion Title</label> <?=form::input('title')?></li>
+	<li><label for="content">Content</label> <?=form::textarea('content')?></li>
+	<li><?=form::submit('submit', 'Submit')?></li>
+</ul>
+<?=form::close()?>
