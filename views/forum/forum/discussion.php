@@ -1,9 +1,17 @@
+<div class="forum_discussion_header">
+	<h2><?=$discussion->title?></h2>
+	<div class="forum_discussion_author">Started by: <?=$discussion->user->name?></div>
+	<div class="forum_disucssion_date">On: <?=date('Y/m/d', $discussion->date_created)?></div>
+</div>
 <ul>
 	<?php foreach ($comments as $comment):?>
 	<li>
-		<h3><?=$comment->title?></h3>
-		<h4><?=$comment->user->first_name.' '.$comment->user->last_name?></h4>
-		<?=$comment->content?>
+		<div class="forum_comment_header">
+			<div class="forum_comment_id"><a href="#comment_<?=$comment->id?>"><?=$comment->id?></a></div>
+			<div class="forum_comment_author"><?=$comment->user->first_name.' '.$comment->user->last_name?></div>
+			<div class="forum_comment_date"><?=date('Y/m/d', $comment->date)?></div>
+		</div>
+		<div class="forum_comment_content"><?=$comment->content?></div>
 	</li>
 	<?php endforeach;?>
 </ul>

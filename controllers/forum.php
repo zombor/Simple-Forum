@@ -7,6 +7,11 @@ class Forum_Controller extends Forum_Website_Controller {
 		$this->view->categories = Auto_Modeler_ORM::factory('forum_category')->fetch_all();
 	}
 
+	public function all_discussions()
+	{
+		$this->view->discussions = Auto_Modeler_ORM::factory('forum_discussion')->find_discussions();
+	}
+
 	public function category($id)
 	{
 		$category = new Forum_Category_Model($id);
