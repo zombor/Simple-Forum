@@ -10,4 +10,16 @@ class Forum_Comment_Model extends Auto_Modeler_ORM
 	                        'content' => '',
 	                        'forum_discussion_id' => '',
 	                        'date' => '');
+
+
+	// Overloading get for forum_user
+	public function __get($key)
+	{
+		if ($key == 'user')
+		{
+			return $this->db->from('users')->where('id', $this->data['user_id'])->get()->result(TRUE, 'Forum_User_Model')->current();
+		}
+		else
+			return parent::__get($key);
+	}
 }

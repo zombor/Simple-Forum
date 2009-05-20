@@ -7,7 +7,7 @@
 	<?php foreach ($comments as $comment):?>
 	<li>
 		<div class="forum_comment_header">
-			<div class="forum_comment_id"><a href="#comment_<?=$comment->id?>"><?=$comment->id?></a></div>
+			<div class="forum_comment_id" id="comment_<?=$comment->id?>"><a href="#comment_<?=$comment->id?>"><?=$comment->id?></a></div>
 			<div class="forum_comment_author"><?=$comment->user->first_name.' '.$comment->user->last_name?></div>
 			<div class="forum_comment_date"><?=date('Y/m/d', $comment->date)?></div>
 		</div>
