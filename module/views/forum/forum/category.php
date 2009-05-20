@@ -3,6 +3,14 @@
 <?php if (Auth::instance()->logged_in()):?><p><?=html::anchor('forum/create_discussion/'.$category->id, 'Create New Discussion')?></p><?php endif;?> 
 
 <ul>
-	<?php foreach ($discussions as $discussion):?><li><?=html::anchor('forum/discussion/'.$discussion->id, $discussion->title)?></li>
+	<?php foreach ($discussions as $discussion):?>
+	<li>
+		<div class="forum_discussion_title"><?=html::anchor('forum/discussion/'.$discussion->id, $discussion->title)?></div>
+		<div class="forum_discussion_details clearfix">
+			<div class="forum_discussion_total_comments"><?=count($discussion->find_related('forum_comments'))?> comments</div>
+			<div class="forum_discussion_date">Last Comment: <?=date('Y/m/d', $discussion->find_newest_comment()->date)?></div>
+			<div class="forum_discussion_author">By: <?=$discussion->find_newest_comment()->user->name?></div>
+		</div>
+	</li>
 	<?php endforeach;?>
 </ul>

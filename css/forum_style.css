@@ -1,0 +1,60 @@
+div#forum_menu {
+	clear: both;
+}
+
+div#forum_menu ul {
+	border-bottom: 2px solid black;
+	height: 1.25em;
+}
+
+div#forum_menu ul li {
+	float: left;
+	margin-right: .5em;
+	margin-left: .5em;
+}
+
+div#forum_menu ul li a {
+	text-decoration: none;
+}
+
+div.forum_discussion_details div, div.forum_category_details div, div.forum_comment_header div, div.forum_discussion_header div {
+	float: left;
+	margin-left: .5em;
+	margin-right: .5em;
+	font-size: .75em;
+}
+
+div.forum_comment_header {
+	font-size: .85em;
+}
+
+div.forum_comment_header div.forum_comment_id {
+	font-size: .75em;
+}
+
+div.forum_comment_header div {
+	margin-left: 0;
+	margin-right: 1em;
+}
+
+div.forum_discussion_header h2 {
+	font-size: 1.15em;
+	text-decoration: underline;
+}
+
+ul#discussion_list > li {
+	border: 2px solid #A8BFFF;
+	background-color: #E4EEFD;
+	padding: .25em;
+}
+
+ul#discussion_list > li li {
+	list-style-type: disc;
+	margin-left: 1em;
+}
+
+ul#discussion_list > li .forum_comment_content {
+	background-color: #F3F6FA;
+	padding: .25em;
+	font-size: .9em;
+}

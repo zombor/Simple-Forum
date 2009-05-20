@@ -28,6 +28,5 @@ abstract class Forum_Website_Controller extends Website_Controller {
 		}
 		$this->template->title = '';
 		new Profiler;
-		//include_once Kohana::find_file('vendor', 'Markdown');
 	}
 }

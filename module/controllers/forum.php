@@ -23,6 +23,8 @@ class Forum_Controller extends Forum_Website_Controller {
 
 	public function discussion($id)
 	{
+		include_once Kohana::find_file('vendor', 'Markdown');
+
 		$discussion = new Forum_Discussion_Model($id);
 		$comments = $discussion->find_related('forum_comments');
 
