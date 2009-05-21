@@ -15,4 +15,5 @@
 		</div>
 	</li>
 	<?php endforeach;?>
+	<?php if ( ! count($discussions)):?><h3>There are no discussions in this category.</h3><?php endif;?> 
 </ul>
