@@ -47,7 +47,7 @@ class Forum_Discussion_Model extends Auto_Modeler_ORM
 		                ->from('forum_comments')
 		                ->limit($limit, ($page-1)*$limit)
 		                ->orderby('date', 'ASC')
-		                ->get()->result(TRUE, 'Forum_Category_Model');
+		                ->get()->result(TRUE, 'Forum_Comment_Model');
 	}
 
 	public function find_newest_comment()
