@@ -36,6 +36,16 @@ class Forum_Controller extends Forum_Website_Controller {
 		$this->view->discussion = $discussion;
 		$this->view->comments = $comments;
 		$this->view->num_pages = ceil(count($discussion->find_related('forum_comments')) / 20);
+
+		// If this user hasn't viewed this discussion, insert the view
+		if ($discussion->user_has_not_read($_SESSION['forum_user']->id))
+		{
+			$user_discussion = new Forum_User_Discussion_Model();
+			$user_discussion->user_id = $_SESSION['forum_user']->id;
+			$user_discussion->forum_discussion_id = $discussion->id;
+			$user_discussion->forum_comment_id = $discussion->find_newest_comment()->id;
+			$user_discussion->save();
+		}
 	}
 
 	public function create_discussion($category_id)

@@ -55,4 +55,11 @@ class Forum_Discussion_Model extends Auto_Modeler_ORM
 	{
 		return $this->db->from('forum_comments')->where('forum_discussion_id', $this->id)->orderby('date', 'DESC')->limit(1)->get()->result(TRUE, 'Forum_Comment_Model')->current();
 	}
+
+	public function user_has_not_read($user_id)
+	{
+		return ! (bool) $this->db->from('forum_user_discussions')
+		                       ->where(array('user_id' => $user_id, 'forum_discussion_id' => $this->data['id']))
+		                       ->get()->count();
+	}
 }

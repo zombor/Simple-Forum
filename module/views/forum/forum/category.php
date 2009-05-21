@@ -6,7 +6,7 @@
 
 <ul>
 	<?php foreach ($discussions as $discussion):?>
-	<li>
+	<li<?=$discussion->user_has_not_read($_SESSION['forum_user']->id) ? ' class="unread"' : ''?>>
 		<div class="forum_discussion_title"><?=html::anchor('forum/discussion/'.$discussion->id, $discussion->title)?></div>
 		<div class="forum_discussion_details clearfix">
 			<div class="forum_discussion_total_comments"><?=count($discussion->find_related('forum_comments'))?> comments</div>

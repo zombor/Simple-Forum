@@ -82,3 +82,7 @@ ul#discussion_list > li div.forum_comment_admin_links {
 p.forum_discussion_page_links, p.forum_category_page_links {
 	float: right;
 }
+
+li.unread {
+	background-color: #E4EEFD;
+}
