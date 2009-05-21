@@ -8,8 +8,8 @@ class Forum_Category_Model extends Auto_Modeler_ORM
 	                        'name' => '',
 	                        'order' => '',);
 
-	public function find_newest_discussion()
+	public function find_newest_discussion_comment()
 	{
-		return $this->db->from('forum_discussions')->where('forum_category_id', $this->id)->orderby('date_created', 'DESC')->limit(1)->get()->result(TRUE, 'Forum_Discussion_Model')->current();
+		return $this->db->from('forum_discussions')->where('forum_category_id', $this->id)->orderby('date_created', 'DESC')->limit(1)->get()->result(TRUE, 'Forum_Discussion_Model')->current()->find_newest_comment();
 	}
 }

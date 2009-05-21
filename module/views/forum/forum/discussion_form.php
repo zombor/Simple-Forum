@@ -1,4 +1,4 @@
-<h2>Create New Discussion</h2>
+<h2>Edit Discussion</h2>
 <?=form::open()?>
 <?=$errors?>
 <ul>

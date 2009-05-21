@@ -7,6 +7,12 @@
 	<?php foreach ($comments as $comment):?>
 	<li>
 		<div class="forum_comment_header clearfix">
+			<?php if ($comment->user->id == $_SESSION['forum_user']->id OR Auth::instance()->logged_in('admin')):?>
+			<div class="forum_comment_admin_links">
+				<div class="forum_comment_edit"><?=html::anchor('admin/forum/edit_comment/'.$comment->id, 'Edit')?></div>
+				<div class="forum_comment_delete"><?=html::anchor('admin/forum/delete_comment/'.$comment->id, 'Delete')?></div>
+			</div>
+			<?php endif;?>
 			<div class="forum_comment_id" id="comment_<?=$comment->id?>"><a href="#comment_<?=$comment->id?>">Comment #<?=$comment->id?></a></div>
 			<div class="forum_comment_author">By: <?=$comment->user->name?></div>
 			<div class="forum_comment_date">Posted On: <?=date('Y/m/d', $comment->date)?></div>
