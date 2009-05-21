@@ -1,4 +1,5 @@
 <div class="forum_discussion_header clearfix">
+	<p class="forum_discussion_page_links">Page: <?php for ($i = 1; $i <= $num_pages; $i++):?><?=html::anchor('forum/discussion/'.$discussion->id.'?page='.$i, $i, array('class' => $this->input->get('page', 1) == $i ? 'active' : 'inactive'))?> <?php endfor;?></p>
 	<h2><?=$discussion->title?></h2>
 	<div class="forum_discussion_author">Started by: <?=$discussion->user->name?></div>
 	<div class="forum_disucssion_date">On: <?=date('Y/m/d', $discussion->date_created)?></div>

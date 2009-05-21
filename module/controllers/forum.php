@@ -14,22 +14,28 @@ class Forum_Controller extends Forum_Website_Controller {
 
 	public function category($id)
 	{
+		$page = $this->input->get('page', 1);
+
 		$category = new Forum_Category_Model($id);
-		$discussions = $category->find_related('forum_discussions');
+		$discussions = $category->find_discussions(20, $page);
 
 		$this->view->category = $category;
 		$this->view->discussions = $discussions;
+		$this->view->num_pages = ceil(count($category->find_related('forum_discussions')) / 20);
 	}
 
 	public function discussion($id)
 	{
+		$page = $this->input->get('page', 1);
+
 		include_once Kohana::find_file('vendor', 'Markdown');
 
 		$discussion = new Forum_Discussion_Model($id);
-		$comments = $discussion->find_related('forum_comments');
+		$comments = $discussion->find_comments(20, $page);
 
 		$this->view->discussion = $discussion;
 		$this->view->comments = $comments;
+		$this->view->num_pages = ceil(count($discussion->find_related('forum_comments')) / 20);
 	}
 
 	public function create_discussion($category_id)

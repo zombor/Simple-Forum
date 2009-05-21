@@ -25,7 +25,30 @@ class Forum_Discussion_Model extends Auto_Modeler_ORM
 
 	public function find_discussions($limit = 20, $page = 1)
 	{
-		return $this->db->select('forum_discussions.*')->select(new Database_Expression('MAX(forum_comments.date) AS c_date'))->from('forum_discussions')->join('forum_comments', array('forum_comments.forum_discussion_id' => 'forum_discussions.id'))->limit($limit, ($page-1))->groupby('forum_discussions.id')->orderby('c_date', 'DESC')->get()->result(TRUE, 'Forum_Discussion_Model');
+		if ( ! empty($this->data['forum_category_id']))
+			$this->db->where('forum_category_id', $this->forum_category_id);
+
+		return $this->db->select('forum_discussions.*')
+		                ->select(new Database_Expression('MAX(forum_comments.date) AS c_date'))
+		                ->from('forum_discussions')
+		                ->join('forum_comments', array('forum_comments.forum_discussion_id' => 'forum_discussions.id'))
+		                ->limit($limit, ($page-1))
+		                ->groupby('forum_discussions.id')
+		                ->orderby('c_date', 'DESC')
+		                ->get()->result(TRUE, 'Forum_Discussion_Model');
+	}
+
+	public function find_comments($limit = 20, $page = 1)
+	{
+		if ( ! empty($this->data['id']))
+			$this->db->where('forum_discussion_id', $this->forum_category_id);
+
+		return $this->db->select('forum_comments.*')
+		                ->from('forum_comments')
+		                ->where('forum_discussion_id', $this->id)
+		                ->limit($limit, ($page-1)*$limit)
+		                ->orderby('date', 'ASC')
+		                ->get()->result(TRUE, 'Forum_Category_Model');
 	}
 
 	public function find_newest_comment()
