@@ -86,3 +86,12 @@ p.forum_discussion_page_links, p.forum_category_page_links {
 li.unread {
 	background-color: #E4EEFD;
 }
+
+#content {
+	width: 450px;
+	height: 100px;
+}
+
+li.markdown_instructions {
+	font-size: .75em;
+}

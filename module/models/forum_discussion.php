@@ -41,11 +41,10 @@ class Forum_Discussion_Model extends Auto_Modeler_ORM
 	public function find_comments($limit = 20, $page = 1)
 	{
 		if ( ! empty($this->data['id']))
-			$this->db->where('forum_discussion_id', $this->forum_category_id);
+			$this->db->where('forum_discussion_id', $this->id);
 
 		return $this->db->select('forum_comments.*')
 		                ->from('forum_comments')
-		                ->where('forum_discussion_id', $this->id)
 		                ->limit($limit, ($page-1)*$limit)
 		                ->orderby('date', 'ASC')
 		                ->get()->result(TRUE, 'Forum_Category_Model');

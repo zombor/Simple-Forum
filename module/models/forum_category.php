@@ -6,7 +6,8 @@ class Forum_Category_Model extends Auto_Modeler_ORM
 
 	protected $data = array('id' => '',
 	                        'name' => '',
-	                        'order' => '',);
+	                        'order' => '',
+	                        'description' => '');
 
 	public function find_newest_discussion_comment()
 	{

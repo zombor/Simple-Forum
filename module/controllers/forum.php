@@ -50,7 +50,7 @@ class Forum_Controller extends Forum_Website_Controller {
 
 	public function create_discussion($category_id)
 	{
-		$this->view = $this->template->content = new View('forum/forum/discussion_form');
+		$this->view = $this->template->content = new View('forum/forum/create_discussion');
 		$category = new Forum_Category_Model($category_id);
 		$discussion = new Forum_Discussion_Model;
 		$comment = new Forum_Comment_Model;

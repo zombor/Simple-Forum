@@ -27,6 +27,7 @@
 <?=form::open('forum/create_comment/'.$discussion->id)?>
 <ul>
 	<li><?=form::textarea('content')?></li>
+	<li class="markdown_instructions">Use <a href="http://daringfireball.net/projects/markdown/syntax" class="new_window">Markdown</a> to format your comments.</li>
 	<li><?=form::submit('submit', 'Submit')?></li>
 </ul>
 <?=form::close()?>

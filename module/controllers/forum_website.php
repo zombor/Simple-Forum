@@ -27,6 +27,5 @@ abstract class Forum_Website_Controller extends Website_Controller {
 			$this->template->content->content = $this->view = 'No template found.';
 		}
 		$this->template->title = '';
-		new Profiler;
 	}
 }
