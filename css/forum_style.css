@@ -40,6 +40,12 @@ div.forum_discussion_details div, div.forum_category_details div, div.forum_comm
 	font-size: .75em;
 }
 
+div.forum_category_description {
+	font-size: .75em;
+	margin-left: .5em;
+	margin-right: .5em;
+}
+
 div.forum_comment_header {
 	font-size: .85em;
 }
@@ -87,7 +93,7 @@ li.unread {
 	background-color: #E4EEFD;
 }
 
-#content {
+#content, .comment_input_box {
 	width: 450px;
 	height: 100px;
 }

@@ -16,7 +16,7 @@
 			<?php endif;?>
 			<div class="forum_comment_id" id="comment_<?=$comment->id?>"><a href="#comment_<?=$comment->id?>">Comment #<?=$comment->id?></a></div>
 			<div class="forum_comment_author">By: <?=$comment->user->name?></div>
-			<div class="forum_comment_date">Posted On: <?=date('Y/m/d', $comment->date)?></div>
+			<div class="forum_comment_date">Posted On: <?=date('Y/m/d', $comment->date)?> <?=date('g:i A', $comment->date)?></div>
 		</div>
 		<div class="forum_comment_content"><?=markdown($comment->content)?></div>
 	</li>

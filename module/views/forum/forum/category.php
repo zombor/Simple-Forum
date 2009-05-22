@@ -2,7 +2,10 @@
 
 <h2><?=$category->name?></h2>
 
-<?php if (Auth::instance()->logged_in()):?><p><?=html::anchor('forum/create_discussion/'.$category->id, 'Create New Discussion')?></p><?php endif;?> 
+<?php if (Auth::instance()->logged_in()):?><p><?=html::anchor('forum/create_discussion/'.$category->id, 'Create New Discussion')?></p>
+<?php else:?>
+<p>You must be <?=html::anchor('user/login', 'logged in')?> to create discussions.</p>
+<?php endif;?> 
 
 <ul>
 	<?php foreach ($discussions as $discussion):?>
