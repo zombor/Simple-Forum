@@ -63,6 +63,7 @@ class Forum_Controller extends Admin_Forum_Website_Controller {
 
 		$comment = new Forum_Comment_Model($comment_id);
 
+		// Make sure only the creator or an admin is trying to delete this
 		if (($comment->user->id != $_SESSION['forum_user']->id) OR ! Auth::instance()->logged_in('admin'))
 			Event::run('system.404');
 
@@ -75,6 +76,26 @@ class Forum_Controller extends Admin_Forum_Website_Controller {
 		{
 			url::redirect('forum/discussion/'.$comment->forum_discussion_id);
 		}
-		//die('wtf');
+	}
+
+	public function delete_discussion($discussion_id)
+	{
+		$this->view = $this->template->content = new View('forum/admin/forum/delete_comment');
+
+		$discussion = new Forum_Discussion_Model($discussion_id);
+
+		// Make sure only the creator or an admin is trying to delete this
+		if (($discussion->user->id != $_SESSION['forum_user']->id) OR ! Auth::instance()->logged_in('admin'))
+			Event::run('system.404');
+
+		if(isset($_POST['confirm']))
+		{
+			$discussion->delete();
+			url::redirect('forum/category/'.$discussion->forum_category_id);
+		}
+		elseif(isset($_POST['cancel']))
+		{
+			url::redirect('forum/category/'.$discussion->forum_category_id);
+		}
 	}
 }

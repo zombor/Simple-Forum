@@ -7,9 +7,14 @@
 <p>You must be <?=html::anchor('user/login', 'logged in')?> to create discussions.</p>
 <?php endif;?> 
 
-<ul>
+<ul id="category_list">
 	<?php foreach ($discussions as $discussion):?>
 	<li<?=$discussion->user_has_not_read($_SESSION['forum_user']->id) ? ' class="unread"' : ''?>>
+		<?php if ($discussion->user->id == $_SESSION['forum_user']->id OR Auth::instance()->logged_in('admin')):?>
+		<div class="forum_discussion_admin_links">
+			<div class="forum_discussion_delete"><?=html::anchor('admin/forum/delete_discussion/'.$discussion->id, 'Delete')?></div>
+		</div>
+		<?php endif;?>
 		<div class="forum_discussion_title"><?=html::anchor('forum/discussion/'.$discussion->id, $discussion->title)?></div>
 		<div class="forum_discussion_details clearfix">
 			<div class="forum_discussion_total_comments"><?=count($discussion->find_related('forum_comments'))?> comments</div>
