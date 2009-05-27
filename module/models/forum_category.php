@@ -1,6 +1,6 @@
 <?php
 
-class Forum_Category_Model extends Auto_Modeler_ORM
+class Forum_Category_Model extends CSRF_Model
 {
 	protected $table_name = 'forum_categories';
 

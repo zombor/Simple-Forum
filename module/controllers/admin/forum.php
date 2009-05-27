@@ -44,7 +44,9 @@ class Forum_Controller extends Admin_Forum_Website_Controller {
 
 			try
 			{
-				$comment->save();
+				if ($comment->valid(array('csrf' => 'blah'),//$this->input->post('csrf')),
+				                    array('check_csrf')))
+					$comment->save();
 
 				url::redirect('forum/discussion/'.$comment->forum_discussion_id);
 			}
@@ -67,7 +69,7 @@ class Forum_Controller extends Admin_Forum_Website_Controller {
 		if (($comment->user->id != $_SESSION['forum_user']->id) OR ! Auth::instance()->logged_in('admin'))
 			Event::run('system.404');
 
-		if(isset($_POST['confirm']))
+		if(isset($_POST['confirm']) AND isset($_POST['csrf']) AND forum_csrf::valid($_POST['csrf']))
 		{
 			$comment->delete();
 			url::redirect('forum/discussion/'.$comment->forum_discussion_id);
@@ -88,7 +90,7 @@ class Forum_Controller extends Admin_Forum_Website_Controller {
 		if (($discussion->user->id != $_SESSION['forum_user']->id) OR ! Auth::instance()->logged_in('admin'))
 			Event::run('system.404');
 
-		if(isset($_POST['confirm']))
+		if(isset($_POST['confirm']) AND isset($_POST['csrf']) AND forum_csrf::valid($_POST['csrf']))
 		{
 			$discussion->delete();
 			url::redirect('forum/category/'.$discussion->forum_category_id);
