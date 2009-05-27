@@ -17,7 +17,12 @@ class Forum_Discussion_Model extends CSRF_Model
 	{
 		if ($key == 'user')
 		{
-			return $this->db->from('users')->where('id', $this->data['user_id'])->get()->result(TRUE, 'Forum_User_Model')->current();
+			// This should be optimized to something better
+			$user = new User_Model;
+			if ($user instanceof ORM)
+				return ORM::factory('forum_user', $this->data['user_id']);
+			else
+				return $this->db->from('users')->where('id', $this->data['user_id'])->get()->result(TRUE, 'Forum_User_Model')->current();
 		}
 		else
 			return parent::__get($key);
